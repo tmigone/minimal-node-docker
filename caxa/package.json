@@ -1,0 +1,16 @@
+{
+  "name": "caxa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "livepush": "node index.js",
+    "build:caxa": "caxa --input src --output test '{{caxa}}/node_modules/.bin/node' '{{caxa}}/index.js'"
+  },
+  "author": "Tomás Migone <tomasmigone@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "caxa": "^2.1.0"
+  }
+}

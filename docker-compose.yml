@@ -1,0 +1,39 @@
+version: 2.1
+
+services:
+
+  entware:
+    image: rahulthakoor/busybox-entware:aarch64-0.0.1
+    command: "sleep infinity"
+
+  entware-node:
+    build: ./entware
+    command: "sleep infinity"
+
+  busybox:
+    build: ./busybox
+    command: "sleep infinity"
+
+  alpine:
+    image: balenalib/aarch64-alpine:3.14-build
+    command: "balena-idle"
+
+  alpine-node-build:
+    image: balenalib/aarch64-alpine-node:14-3.14-build
+    command: "balena-idle"
+
+  alpine-node-run:
+    image: balenalib/aarch64-alpine-node:14-3.14-run
+    command: "balena-idle"
+
+  node:
+    image: node:14-alpine3.14
+    command: "sleep infinity"
+
+  caxa:
+    build: ./caxa
+    command: balena-idle
+
+  pkg:
+    build: ./pkg
+    command: balena-idle

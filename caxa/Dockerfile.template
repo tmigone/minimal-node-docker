@@ -1,0 +1,25 @@
+FROM balenalib/aarch64-alpine-node:14-3.14-build as builder
+WORKDIR /usr/src/app
+
+# Install dependencies
+COPY package*.json ./
+RUN npm install
+
+# Copy source files
+COPY src src
+
+# Build and package with caxa
+# package.json > "build:caxa": "npm run clean && tsc && cp package*.json build && cd build && npm install --production"
+# package.json > "package:caxa": "caxa --input build --output challenge --no-include-node 'node' '{{caxa}}/index.js'"
+RUN npm run build:caxa
+
+FROM balenalib/aarch64-alpine:3.14-build as run
+WORKDIR /usr/src
+
+ENV DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
+
+COPY --from=builder /usr/src/app/test .
+
+#dev-cmd-live=npm run livepush
+
+CMD [ "/usr/src/test" ]
