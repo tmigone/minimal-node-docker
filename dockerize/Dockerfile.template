@@ -1,0 +1,13 @@
+FROM balenalib/aarch64-alpine-node:14-3.14-run as build
+
+RUN apk add --no-cache python3 py3-pip git rsync binutils
+
+RUN pip install git+https://github.com/larsks/dockerize
+
+WORKDIR /rootfs
+RUN dockerize -n --verbose -o /rootfs/ /usr/local/bin/node
+
+FROM busybox:1.35.0
+WORKDIR /usr/src
+
+COPY --from=build /rootfs/ /

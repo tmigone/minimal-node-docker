@@ -26,6 +26,8 @@ This repo is to test what a minimal docker image with nodejs runtime looks like.
 [Info]               │ caxa              │ 512.83 MB  │ 6 minutes, 9 seconds  │
 [Info]               ├───────────────────┼────────────┼───────────────────────┤
 [Info]               │ pkg               │ 774.04 MB  │ 7 minutes, 48 seconds │
+[Info]               ├───────────────────┼────────────┼───────────────────────┤
+[Info]               │ dockerize         │ 76.37 MB   │ 1 minute, 10 seconds  │
 [Info]               └───────────────────┴────────────┴───────────────────────┘
 ```
 
@@ -33,5 +35,7 @@ Some observations:
 - When using `balenalib` base images `BALENA_ARCH` images result in smaller images when compared to `BALENA_MACHINE_NAME` images
 - Best current result is:
   - For `aarch64` use `entware + opkg` --> ~40MB image size
-  - For generic arch use `node` --> ~110MB image size
+  - For generic arch use:
+    - `node` --> ~110MB image size
+    - `dockerize`--> ~76MB image size
 

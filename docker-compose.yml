@@ -37,3 +37,7 @@ services:
   pkg:
     build: ./pkg
     command: balena-idle
+  
+  dockerize:
+    build: ./dockerize
+    command: "sleep infinity"
